@@ -7,110 +7,3115 @@ package dom
 
 import "syscall/js"
 
-type Event interface {
-	// Type_ returns the value of type_.
-	Type_() string
-
-	// Target returns the value of target or nil.
-	Target() EventTarget
-
-	// SrcElement returns the value of srcElement or nil.
-	SrcElement() EventTarget
-
-	// CurrentTarget returns the value of currentTarget.
-	CurrentTarget() EventTarget
-
-	// EventPhase returns the value of eventPhase.
-	EventPhase() uint16
-
-	// CancelBubble returns the value of cancelBubble.
-	CancelBubble() bool
-
-	// SetCancelBubble updates the cancelBubble value.
-	SetCancelBubble(value bool)
-
-	// Bubbles returns the value of bubbles.
-	Bubbles() bool
-
-	// Cancelable returns the value of cancelable.
-	Cancelable() bool
-
-	// ReturnValue returns the value of returnValue.
-	ReturnValue() bool
-
-	// SetReturnValue updates the returnValue value.
-	SetReturnValue(value bool)
-
-	// DefaultPrevented returns the value of defaultPrevented.
-	DefaultPrevented() bool
-
-	// Composed returns the value of composed.
-	Composed() bool
-
-	// IsTrusted returns the value of isTrusted.
-	IsTrusted() bool
-
-	// TimeStamp returns the value of timeStamp.
-	TimeStamp() bool
+type Example interface {
 }
-type eventWrapper struct {
-	val js.Value
+type exampleWrapper struct {
+val js.Value
+}
+func WrapExample(val js.Value)Example{
+return exampleWrapper{val:val}
 }
 
-func NewEvent(type_ string, eventInitDict EventInit) Event {
-	val := js.Global().New("Event", type_, eventInitDict)
-	return eventWrapper{val: val}
+type HTMLAllCollection interface {
+// Length returns the value of length.
+Length() string
+
 }
-func WrapEvent(val js.Value) Event {
-	return eventWrapper{val: val}
+type hTMLAllCollectionWrapper struct {
+val js.Value
 }
-func (e eventWrapper) Type_() string {
+func WrapHTMLAllCollection(val js.Value)HTMLAllCollection{
+return hTMLAllCollectionWrapper{val:val}
+}
+func (h hTMLAllCollectionWrapper)Length() string{
+return h.val.Get("length").String()
 }
 
-func (e eventWrapper) Target() EventTarget {
+
+type HTMLFormControlsCollection interface {
+}
+type hTMLFormControlsCollectionWrapper struct {
+val js.Value
+}
+func WrapHTMLFormControlsCollection(val js.Value)HTMLFormControlsCollection{
+return hTMLFormControlsCollectionWrapper{val:val}
 }
 
-func (e eventWrapper) SrcElement() EventTarget {
+type RadioNodeList interface {
+// Value returns the value of value.
+Value() string
+
+// SetValue updates the value value.
+SetValue(value string)
+
+}
+type radioNodeListWrapper struct {
+val js.Value
+}
+func WrapRadioNodeList(val js.Value)RadioNodeList{
+return radioNodeListWrapper{val:val}
+}
+func (r radioNodeListWrapper)Value() string{
+return r.val.Get("value").String()
 }
 
-func (e eventWrapper) CurrentTarget() EventTarget {
+func (r radioNodeListWrapper) SetValue(val string) {
 }
 
-func (e eventWrapper) EventPhase() uint16 {
+
+type HTMLOptionsCollection interface {
+// Length returns the value of length.
+Length() int64
+
+// SetLength updates the length value.
+SetLength(value int64)
+
+// SelectedIndex returns the value of selectedIndex.
+SelectedIndex() int64
+
+// SetSelectedIndex updates the selectedIndex value.
+SetSelectedIndex(value int64)
+
+}
+type hTMLOptionsCollectionWrapper struct {
+val js.Value
+}
+func WrapHTMLOptionsCollection(val js.Value)HTMLOptionsCollection{
+return hTMLOptionsCollectionWrapper{val:val}
+}
+func (h hTMLOptionsCollectionWrapper)Length() int64{
+return int64(h.val.Get("length").Int())
 }
 
-func (e eventWrapper) CancelBubble() bool {
+func (h hTMLOptionsCollectionWrapper) SetLength(val int64) {
 }
 
-func (e eventWrapper) SetCancelBubble(val bool) {
+func (h hTMLOptionsCollectionWrapper)SelectedIndex() int64{
+return int64(h.val.Get("selectedIndex").Int())
 }
 
-func (e eventWrapper) Bubbles() bool {
+func (h hTMLOptionsCollectionWrapper) SetSelectedIndex(val int64) {
 }
 
-func (e eventWrapper) Cancelable() bool {
+
+type DOMStringList interface {
+// Length returns the value of length.
+Length() string
+
+}
+type dOMStringListWrapper struct {
+val js.Value
+}
+func WrapDOMStringList(val js.Value)DOMStringList{
+return dOMStringListWrapper{val:val}
+}
+func (d dOMStringListWrapper)Length() string{
+return d.val.Get("length").String()
 }
 
-func (e eventWrapper) ReturnValue() bool {
+
+type Document interface {
+// Location returns the value of location or nil.
+Location() Location
+
+// Domain returns the value of domain.
+Domain() string
+
+// SetDomain updates the domain value.
+SetDomain(value string)
+
+// Referrer returns the value of referrer.
+Referrer() string
+
+// Cookie returns the value of cookie.
+Cookie() string
+
+// SetCookie updates the cookie value.
+SetCookie(value string)
+
+// LastModified returns the value of lastModified.
+LastModified() string
+
+// ReadyState returns the value of readyState.
+ReadyState() string
+
+// Title returns the value of title.
+Title() string
+
+// SetTitle updates the title value.
+SetTitle(value string)
+
+// Dir returns the value of dir.
+Dir() string
+
+// SetDir updates the dir value.
+SetDir(value string)
+
+// Body returns the value of body or nil.
+Body() HTMLElement
+
+// SetBody updates the body value.
+// The value may also be nil.
+SetBody(value HTMLElement)
+
+// Head returns the value of head or nil.
+Head() HTMLHeadElement
+
+// Images returns the value of images.
+Images() HTMLCollection
+
+// Embeds returns the value of embeds.
+Embeds() HTMLCollection
+
+// Plugins returns the value of plugins.
+Plugins() HTMLCollection
+
+// Links returns the value of links.
+Links() HTMLCollection
+
+// Forms returns the value of forms.
+Forms() HTMLCollection
+
+// Scripts returns the value of scripts.
+Scripts() string
+
+// CurrentScript returns the value of currentScript.
+CurrentScript() string
+
+// DefaultView returns the value of defaultView.
+DefaultView() bool
+
+// DesignMode returns the value of designMode.
+DesignMode() string
+
+// SetDesignMode updates the designMode value.
+SetDesignMode(value string)
+
+// Onreadystatechange returns the value of onreadystatechange.
+Onreadystatechange() EventHandler
+
+// SetOnreadystatechange updates the onreadystatechange value.
+SetOnreadystatechange(value EventHandler)
+
+}
+type documentWrapper struct {
+val js.Value
+}
+func WrapDocument(val js.Value)Document{
+return documentWrapper{val:val}
+}
+func (d documentWrapper)Location() Location{
+return WrapLocation(d.val.Get("location"))
 }
 
-func (e eventWrapper) SetReturnValue(val bool) {
+func (d documentWrapper)Domain() string{
+return d.val.Get("domain").String()
 }
 
-func (e eventWrapper) DefaultPrevented() bool {
+func (d documentWrapper) SetDomain(val string) {
 }
 
-func (e eventWrapper) Composed() bool {
+func (d documentWrapper)Referrer() string{
+return d.val.Get("referrer").String()
 }
 
-func (e eventWrapper) IsTrusted() bool {
+func (d documentWrapper)Cookie() string{
+return d.val.Get("cookie").String()
 }
 
-func (e eventWrapper) TimeStamp() bool {
+func (d documentWrapper) SetCookie(val string) {
 }
 
-type EventInit struct {
-	Bubbles    bool
-	Cancelable bool
-	Composed   bool
+func (d documentWrapper)LastModified() string{
+return d.val.Get("lastModified").String()
 }
+
+func (d documentWrapper)ReadyState() string{
+return d.val.Get("readyState").String()
+}
+
+func (d documentWrapper)Title() string{
+return d.val.Get("title").String()
+}
+
+func (d documentWrapper) SetTitle(val string) {
+}
+
+func (d documentWrapper)Dir() string{
+return d.val.Get("dir").String()
+}
+
+func (d documentWrapper) SetDir(val string) {
+}
+
+func (d documentWrapper)Body() HTMLElement{
+return WrapHTMLElement(d.val.Get("body"))
+}
+
+func (d documentWrapper) SetBody(val HTMLElement) {
+}
+
+func (d documentWrapper)Head() HTMLHeadElement{
+return WrapHTMLHeadElement(d.val.Get("head"))
+}
+
+func (d documentWrapper)Images() HTMLCollection{
+return WrapHTMLCollection(d.val.Get("images"))
+}
+
+func (d documentWrapper)Embeds() HTMLCollection{
+return WrapHTMLCollection(d.val.Get("embeds"))
+}
+
+func (d documentWrapper)Plugins() HTMLCollection{
+return WrapHTMLCollection(d.val.Get("plugins"))
+}
+
+func (d documentWrapper)Links() HTMLCollection{
+return WrapHTMLCollection(d.val.Get("links"))
+}
+
+func (d documentWrapper)Forms() HTMLCollection{
+return WrapHTMLCollection(d.val.Get("forms"))
+}
+
+func (d documentWrapper)Scripts() string{
+return d.val.Get("scripts").String()
+}
+
+func (d documentWrapper)CurrentScript() string{
+return d.val.Get("currentScript").String()
+}
+
+func (d documentWrapper)DefaultView() bool{
+return d.val.Get("defaultView").Bool()
+}
+
+func (d documentWrapper)DesignMode() string{
+return d.val.Get("designMode").String()
+}
+
+func (d documentWrapper) SetDesignMode(val string) {
+}
+
+func (d documentWrapper)Onreadystatechange() EventHandler{
+return WrapEventHandler(d.val.Get("onreadystatechange"))
+}
+
+func (d documentWrapper) SetOnreadystatechange(val EventHandler) {
+}
+
+
+type mixin interface {
+// ActiveElement returns the value of activeElement or nil.
+ActiveElement() Element
+
+}
+type mixinWrapper struct {
+val js.Value
+}
+func WrapMixin(val js.Value)Mixin{
+return mixinWrapper{val:val}
+}
+func (m mixinWrapper)ActiveElement() Element{
+return WrapElement(m.val.Get("activeElement"))
+}
+
+
+type HTMLElement interface {
+// Title returns the value of title.
+Title() string
+
+// SetTitle updates the title value.
+SetTitle(value string)
+
+// Lang returns the value of lang.
+Lang() string
+
+// SetLang updates the lang value.
+SetLang(value string)
+
+// Translate returns the value of translate.
+Translate() bool
+
+// SetTranslate updates the translate value.
+SetTranslate(value bool)
+
+// Dir returns the value of dir.
+Dir() string
+
+// SetDir updates the dir value.
+SetDir(value string)
+
+// Hidden returns the value of hidden.
+Hidden() bool
+
+// SetHidden updates the hidden value.
+SetHidden(value bool)
+
+// AccessKey returns the value of accessKey.
+AccessKey() string
+
+// SetAccessKey updates the accessKey value.
+SetAccessKey(value string)
+
+// AccessKeyLabel returns the value of accessKeyLabel.
+AccessKeyLabel() string
+
+// Draggable returns the value of draggable.
+Draggable() bool
+
+// SetDraggable updates the draggable value.
+SetDraggable(value bool)
+
+// Spellcheck returns the value of spellcheck.
+Spellcheck() bool
+
+// SetSpellcheck updates the spellcheck value.
+SetSpellcheck(value bool)
+
+// Autocapitalize returns the value of autocapitalize.
+Autocapitalize() string
+
+// SetAutocapitalize updates the autocapitalize value.
+SetAutocapitalize(value string)
+
+// EmptyString returns the value of EmptyString.
+EmptyString() ElementInternals
+
+// SetEmptyString updates the EmptyString value.
+SetEmptyString(value ElementInternals)
+
+}
+type hTMLElementWrapper struct {
+val js.Value
+}
+func NewHTMLElement()HTMLElement{
+val := js.Global().New("HTMLElement",)
+return hTMLElementWrapper{val:val}
+}
+func WrapHTMLElement(val js.Value)HTMLElement{
+return hTMLElementWrapper{val:val}
+}
+func (h hTMLElementWrapper)Title() string{
+return h.val.Get("title").String()
+}
+
+func (h hTMLElementWrapper) SetTitle(val string) {
+}
+
+func (h hTMLElementWrapper)Lang() string{
+return h.val.Get("lang").String()
+}
+
+func (h hTMLElementWrapper) SetLang(val string) {
+}
+
+func (h hTMLElementWrapper)Translate() bool{
+return h.val.Get("translate").Bool()
+}
+
+func (h hTMLElementWrapper) SetTranslate(val bool) {
+}
+
+func (h hTMLElementWrapper)Dir() string{
+return h.val.Get("dir").String()
+}
+
+func (h hTMLElementWrapper) SetDir(val string) {
+}
+
+func (h hTMLElementWrapper)Hidden() bool{
+return h.val.Get("hidden").Bool()
+}
+
+func (h hTMLElementWrapper) SetHidden(val bool) {
+}
+
+func (h hTMLElementWrapper)AccessKey() string{
+return h.val.Get("accessKey").String()
+}
+
+func (h hTMLElementWrapper) SetAccessKey(val string) {
+}
+
+func (h hTMLElementWrapper)AccessKeyLabel() string{
+return h.val.Get("accessKeyLabel").String()
+}
+
+func (h hTMLElementWrapper)Draggable() bool{
+return h.val.Get("draggable").Bool()
+}
+
+func (h hTMLElementWrapper) SetDraggable(val bool) {
+}
+
+func (h hTMLElementWrapper)Spellcheck() bool{
+return h.val.Get("spellcheck").Bool()
+}
+
+func (h hTMLElementWrapper) SetSpellcheck(val bool) {
+}
+
+func (h hTMLElementWrapper)Autocapitalize() string{
+return h.val.Get("autocapitalize").String()
+}
+
+func (h hTMLElementWrapper) SetAutocapitalize(val string) {
+}
+
+func (h hTMLElementWrapper)EmptyString() ElementInternals{
+return WrapElementInternals(h.val.Get("EmptyString"))
+}
+
+func (h hTMLElementWrapper) SetEmptyString(val ElementInternals) {
+}
+
+
+type HTMLUnknownElement interface {
+}
+type hTMLUnknownElementWrapper struct {
+val js.Value
+}
+func WrapHTMLUnknownElement(val js.Value)HTMLUnknownElement{
+return hTMLUnknownElementWrapper{val:val}
+}
+
+type mixin interface {
+// Dataset returns the value of dataset.
+Dataset() DOMStringMap
+
+// Nonce returns the value of nonce.
+Nonce() string
+
+// SetNonce updates the nonce value.
+SetNonce(value string)
+
+// Autofocus returns the value of autofocus.
+Autofocus() bool
+
+// SetAutofocus updates the autofocus value.
+SetAutofocus(value bool)
+
+// TabIndex returns the value of tabIndex.
+TabIndex() FocusOptions
+
+// SetTabIndex updates the tabIndex value.
+SetTabIndex(value FocusOptions)
+
+}
+type mixinWrapper struct {
+val js.Value
+}
+func WrapMixin(val js.Value)Mixin{
+return mixinWrapper{val:val}
+}
+func (m mixinWrapper)Dataset() DOMStringMap{
+return WrapDOMStringMap(m.val.Get("dataset"))
+}
+
+func (m mixinWrapper)Nonce() string{
+return m.val.Get("nonce").String()
+}
+
+func (m mixinWrapper) SetNonce(val string) {
+}
+
+func (m mixinWrapper)Autofocus() bool{
+return m.val.Get("autofocus").Bool()
+}
+
+func (m mixinWrapper) SetAutofocus(val bool) {
+}
+
+func (m mixinWrapper)TabIndex() FocusOptions{
+return WrapFocusOptions(m.val.Get("tabIndex"))
+}
+
+func (m mixinWrapper) SetTabIndex(val FocusOptions) {
+}
+
+
+type DOMStringMap interface {
+}
+type dOMStringMapWrapper struct {
+val js.Value
+}
+func WrapDOMStringMap(val js.Value)DOMStringMap{
+return dOMStringMapWrapper{val:val}
+}
+
+type HTMLHtmlElement interface {
+}
+type hTMLHtmlElementWrapper struct {
+val js.Value
+}
+func NewHTMLHtmlElement()HTMLHtmlElement{
+val := js.Global().New("HTMLHtmlElement",)
+return hTMLHtmlElementWrapper{val:val}
+}
+func WrapHTMLHtmlElement(val js.Value)HTMLHtmlElement{
+return hTMLHtmlElementWrapper{val:val}
+}
+
+type HTMLHeadElement interface {
+}
+type hTMLHeadElementWrapper struct {
+val js.Value
+}
+func NewHTMLHeadElement()HTMLHeadElement{
+val := js.Global().New("HTMLHeadElement",)
+return hTMLHeadElementWrapper{val:val}
+}
+func WrapHTMLHeadElement(val js.Value)HTMLHeadElement{
+return hTMLHeadElementWrapper{val:val}
+}
+
+type HTMLTitleElement interface {
+// Text returns the value of text.
+Text() string
+
+// SetText updates the text value.
+SetText(value string)
+
+}
+type hTMLTitleElementWrapper struct {
+val js.Value
+}
+func NewHTMLTitleElement()HTMLTitleElement{
+val := js.Global().New("HTMLTitleElement",)
+return hTMLTitleElementWrapper{val:val}
+}
+func WrapHTMLTitleElement(val js.Value)HTMLTitleElement{
+return hTMLTitleElementWrapper{val:val}
+}
+func (h hTMLTitleElementWrapper)Text() string{
+return h.val.Get("text").String()
+}
+
+func (h hTMLTitleElementWrapper) SetText(val string) {
+}
+
+
+type HTMLBaseElement interface {
+// Href returns the value of href.
+Href() string
+
+// SetHref updates the href value.
+SetHref(value string)
+
+// Target returns the value of target.
+Target() string
+
+// SetTarget updates the target value.
+SetTarget(value string)
+
+}
+type hTMLBaseElementWrapper struct {
+val js.Value
+}
+func NewHTMLBaseElement()HTMLBaseElement{
+val := js.Global().New("HTMLBaseElement",)
+return hTMLBaseElementWrapper{val:val}
+}
+func WrapHTMLBaseElement(val js.Value)HTMLBaseElement{
+return hTMLBaseElementWrapper{val:val}
+}
+func (h hTMLBaseElementWrapper)Href() string{
+return h.val.Get("href").String()
+}
+
+func (h hTMLBaseElementWrapper) SetHref(val string) {
+}
+
+func (h hTMLBaseElementWrapper)Target() string{
+return h.val.Get("target").String()
+}
+
+func (h hTMLBaseElementWrapper) SetTarget(val string) {
+}
+
+
+type HTMLLinkElement interface {
+// Href returns the value of href.
+Href() string
+
+// SetHref updates the href value.
+SetHref(value string)
+
+// CrossOrigin returns the value of crossOrigin or nil.
+CrossOrigin() string
+
+// SetCrossOrigin updates the crossOrigin value.
+// The value may also be nil.
+SetCrossOrigin(value string)
+
+// Rel returns the value of rel.
+Rel() string
+
+// SetRel updates the rel value.
+SetRel(value string)
+
+// As returns the value of as.
+As() string
+
+// SetAs updates the as value.
+SetAs(value string)
+
+// RelList returns the value of relList.
+RelList() DOMTokenList
+
+// Media returns the value of media.
+Media() string
+
+// SetMedia updates the media value.
+SetMedia(value string)
+
+// Integrity returns the value of integrity.
+Integrity() string
+
+// SetIntegrity updates the integrity value.
+SetIntegrity(value string)
+
+// Hreflang returns the value of hreflang.
+Hreflang() string
+
+// SetHreflang updates the hreflang value.
+SetHreflang(value string)
+
+// Type_ returns the value of type_.
+Type_() string
+
+// SetType_ updates the type_ value.
+SetType_(value string)
+
+// Sizes returns the value of sizes.
+Sizes() DOMTokenList
+
+// ImageSrcset returns the value of imageSrcset.
+ImageSrcset() string
+
+// SetImageSrcset updates the imageSrcset value.
+SetImageSrcset(value string)
+
+// ImageSizes returns the value of imageSizes.
+ImageSizes() string
+
+// SetImageSizes updates the imageSizes value.
+SetImageSizes(value string)
+
+// ReferrerPolicy returns the value of referrerPolicy.
+ReferrerPolicy() string
+
+// SetReferrerPolicy updates the referrerPolicy value.
+SetReferrerPolicy(value string)
+
+}
+type hTMLLinkElementWrapper struct {
+val js.Value
+}
+func NewHTMLLinkElement()HTMLLinkElement{
+val := js.Global().New("HTMLLinkElement",)
+return hTMLLinkElementWrapper{val:val}
+}
+func WrapHTMLLinkElement(val js.Value)HTMLLinkElement{
+return hTMLLinkElementWrapper{val:val}
+}
+func (h hTMLLinkElementWrapper)Href() string{
+return h.val.Get("href").String()
+}
+
+func (h hTMLLinkElementWrapper) SetHref(val string) {
+}
+
+func (h hTMLLinkElementWrapper)CrossOrigin() string{
+return h.val.Get("crossOrigin").String()
+}
+
+func (h hTMLLinkElementWrapper) SetCrossOrigin(val string) {
+}
+
+func (h hTMLLinkElementWrapper)Rel() string{
+return h.val.Get("rel").String()
+}
+
+func (h hTMLLinkElementWrapper) SetRel(val string) {
+}
+
+func (h hTMLLinkElementWrapper)As() string{
+return h.val.Get("as").String()
+}
+
+func (h hTMLLinkElementWrapper) SetAs(val string) {
+}
+
+func (h hTMLLinkElementWrapper)RelList() DOMTokenList{
+return WrapDOMTokenList(h.val.Get("relList"))
+}
+
+func (h hTMLLinkElementWrapper)Media() string{
+return h.val.Get("media").String()
+}
+
+func (h hTMLLinkElementWrapper) SetMedia(val string) {
+}
+
+func (h hTMLLinkElementWrapper)Integrity() string{
+return h.val.Get("integrity").String()
+}
+
+func (h hTMLLinkElementWrapper) SetIntegrity(val string) {
+}
+
+func (h hTMLLinkElementWrapper)Hreflang() string{
+return h.val.Get("hreflang").String()
+}
+
+func (h hTMLLinkElementWrapper) SetHreflang(val string) {
+}
+
+func (h hTMLLinkElementWrapper)Type_() string{
+return h.val.Get("type").String()
+}
+
+func (h hTMLLinkElementWrapper) SetType_(val string) {
+}
+
+func (h hTMLLinkElementWrapper)Sizes() DOMTokenList{
+return WrapDOMTokenList(h.val.Get("sizes"))
+}
+
+func (h hTMLLinkElementWrapper)ImageSrcset() string{
+return h.val.Get("imageSrcset").String()
+}
+
+func (h hTMLLinkElementWrapper) SetImageSrcset(val string) {
+}
+
+func (h hTMLLinkElementWrapper)ImageSizes() string{
+return h.val.Get("imageSizes").String()
+}
+
+func (h hTMLLinkElementWrapper) SetImageSizes(val string) {
+}
+
+func (h hTMLLinkElementWrapper)ReferrerPolicy() string{
+return h.val.Get("referrerPolicy").String()
+}
+
+func (h hTMLLinkElementWrapper) SetReferrerPolicy(val string) {
+}
+
+
+type HTMLMetaElement interface {
+// Name returns the value of name.
+Name() string
+
+// SetName updates the name value.
+SetName(value string)
+
+// HttpEquiv returns the value of httpEquiv.
+HttpEquiv() string
+
+// SetHttpEquiv updates the httpEquiv value.
+SetHttpEquiv(value string)
+
+// Content returns the value of content.
+Content() string
+
+// SetContent updates the content value.
+SetContent(value string)
+
+}
+type hTMLMetaElementWrapper struct {
+val js.Value
+}
+func NewHTMLMetaElement()HTMLMetaElement{
+val := js.Global().New("HTMLMetaElement",)
+return hTMLMetaElementWrapper{val:val}
+}
+func WrapHTMLMetaElement(val js.Value)HTMLMetaElement{
+return hTMLMetaElementWrapper{val:val}
+}
+func (h hTMLMetaElementWrapper)Name() string{
+return h.val.Get("name").String()
+}
+
+func (h hTMLMetaElementWrapper) SetName(val string) {
+}
+
+func (h hTMLMetaElementWrapper)HttpEquiv() string{
+return h.val.Get("httpEquiv").String()
+}
+
+func (h hTMLMetaElementWrapper) SetHttpEquiv(val string) {
+}
+
+func (h hTMLMetaElementWrapper)Content() string{
+return h.val.Get("content").String()
+}
+
+func (h hTMLMetaElementWrapper) SetContent(val string) {
+}
+
+
+type HTMLStyleElement interface {
+// Media returns the value of media.
+Media() string
+
+// SetMedia updates the media value.
+SetMedia(value string)
+
+}
+type hTMLStyleElementWrapper struct {
+val js.Value
+}
+func NewHTMLStyleElement()HTMLStyleElement{
+val := js.Global().New("HTMLStyleElement",)
+return hTMLStyleElementWrapper{val:val}
+}
+func WrapHTMLStyleElement(val js.Value)HTMLStyleElement{
+return hTMLStyleElementWrapper{val:val}
+}
+func (h hTMLStyleElementWrapper)Media() string{
+return h.val.Get("media").String()
+}
+
+func (h hTMLStyleElementWrapper) SetMedia(val string) {
+}
+
+
+type HTMLBodyElement interface {
+}
+type hTMLBodyElementWrapper struct {
+val js.Value
+}
+func NewHTMLBodyElement()HTMLBodyElement{
+val := js.Global().New("HTMLBodyElement",)
+return hTMLBodyElementWrapper{val:val}
+}
+func WrapHTMLBodyElement(val js.Value)HTMLBodyElement{
+return hTMLBodyElementWrapper{val:val}
+}
+
+type HTMLHeadingElement interface {
+}
+type hTMLHeadingElementWrapper struct {
+val js.Value
+}
+func NewHTMLHeadingElement()HTMLHeadingElement{
+val := js.Global().New("HTMLHeadingElement",)
+return hTMLHeadingElementWrapper{val:val}
+}
+func WrapHTMLHeadingElement(val js.Value)HTMLHeadingElement{
+return hTMLHeadingElementWrapper{val:val}
+}
+
+type HTMLParagraphElement interface {
+}
+type hTMLParagraphElementWrapper struct {
+val js.Value
+}
+func NewHTMLParagraphElement()HTMLParagraphElement{
+val := js.Global().New("HTMLParagraphElement",)
+return hTMLParagraphElementWrapper{val:val}
+}
+func WrapHTMLParagraphElement(val js.Value)HTMLParagraphElement{
+return hTMLParagraphElementWrapper{val:val}
+}
+
+type HTMLHRElement interface {
+}
+type hTMLHRElementWrapper struct {
+val js.Value
+}
+func NewHTMLHRElement()HTMLHRElement{
+val := js.Global().New("HTMLHRElement",)
+return hTMLHRElementWrapper{val:val}
+}
+func WrapHTMLHRElement(val js.Value)HTMLHRElement{
+return hTMLHRElementWrapper{val:val}
+}
+
+type HTMLPreElement interface {
+}
+type hTMLPreElementWrapper struct {
+val js.Value
+}
+func NewHTMLPreElement()HTMLPreElement{
+val := js.Global().New("HTMLPreElement",)
+return hTMLPreElementWrapper{val:val}
+}
+func WrapHTMLPreElement(val js.Value)HTMLPreElement{
+return hTMLPreElementWrapper{val:val}
+}
+
+type HTMLQuoteElement interface {
+// Cite returns the value of cite.
+Cite() string
+
+// SetCite updates the cite value.
+SetCite(value string)
+
+}
+type hTMLQuoteElementWrapper struct {
+val js.Value
+}
+func NewHTMLQuoteElement()HTMLQuoteElement{
+val := js.Global().New("HTMLQuoteElement",)
+return hTMLQuoteElementWrapper{val:val}
+}
+func WrapHTMLQuoteElement(val js.Value)HTMLQuoteElement{
+return hTMLQuoteElementWrapper{val:val}
+}
+func (h hTMLQuoteElementWrapper)Cite() string{
+return h.val.Get("cite").String()
+}
+
+func (h hTMLQuoteElementWrapper) SetCite(val string) {
+}
+
+
+type HTMLOListElement interface {
+// Reversed returns the value of reversed.
+Reversed() bool
+
+// SetReversed updates the reversed value.
+SetReversed(value bool)
+
+// Start returns the value of start.
+Start() int64
+
+// SetStart updates the start value.
+SetStart(value int64)
+
+// Type_ returns the value of type_.
+Type_() string
+
+// SetType_ updates the type_ value.
+SetType_(value string)
+
+}
+type hTMLOListElementWrapper struct {
+val js.Value
+}
+func NewHTMLOListElement()HTMLOListElement{
+val := js.Global().New("HTMLOListElement",)
+return hTMLOListElementWrapper{val:val}
+}
+func WrapHTMLOListElement(val js.Value)HTMLOListElement{
+return hTMLOListElementWrapper{val:val}
+}
+func (h hTMLOListElementWrapper)Reversed() bool{
+return h.val.Get("reversed").Bool()
+}
+
+func (h hTMLOListElementWrapper) SetReversed(val bool) {
+}
+
+func (h hTMLOListElementWrapper)Start() int64{
+return int64(h.val.Get("start").Int())
+}
+
+func (h hTMLOListElementWrapper) SetStart(val int64) {
+}
+
+func (h hTMLOListElementWrapper)Type_() string{
+return h.val.Get("type").String()
+}
+
+func (h hTMLOListElementWrapper) SetType_(val string) {
+}
+
+
+type HTMLUListElement interface {
+}
+type hTMLUListElementWrapper struct {
+val js.Value
+}
+func NewHTMLUListElement()HTMLUListElement{
+val := js.Global().New("HTMLUListElement",)
+return hTMLUListElementWrapper{val:val}
+}
+func WrapHTMLUListElement(val js.Value)HTMLUListElement{
+return hTMLUListElementWrapper{val:val}
+}
+
+type HTMLMenuElement interface {
+}
+type hTMLMenuElementWrapper struct {
+val js.Value
+}
+func NewHTMLMenuElement()HTMLMenuElement{
+val := js.Global().New("HTMLMenuElement",)
+return hTMLMenuElementWrapper{val:val}
+}
+func WrapHTMLMenuElement(val js.Value)HTMLMenuElement{
+return hTMLMenuElementWrapper{val:val}
+}
+
+type HTMLLIElement interface {
+// Value returns the value of value.
+Value() int64
+
+// SetValue updates the value value.
+SetValue(value int64)
+
+}
+type hTMLLIElementWrapper struct {
+val js.Value
+}
+func NewHTMLLIElement()HTMLLIElement{
+val := js.Global().New("HTMLLIElement",)
+return hTMLLIElementWrapper{val:val}
+}
+func WrapHTMLLIElement(val js.Value)HTMLLIElement{
+return hTMLLIElementWrapper{val:val}
+}
+func (h hTMLLIElementWrapper)Value() int64{
+return int64(h.val.Get("value").Int())
+}
+
+func (h hTMLLIElementWrapper) SetValue(val int64) {
+}
+
+
+type HTMLDListElement interface {
+}
+type hTMLDListElementWrapper struct {
+val js.Value
+}
+func NewHTMLDListElement()HTMLDListElement{
+val := js.Global().New("HTMLDListElement",)
+return hTMLDListElementWrapper{val:val}
+}
+func WrapHTMLDListElement(val js.Value)HTMLDListElement{
+return hTMLDListElementWrapper{val:val}
+}
+
+type HTMLDivElement interface {
+}
+type hTMLDivElementWrapper struct {
+val js.Value
+}
+func NewHTMLDivElement()HTMLDivElement{
+val := js.Global().New("HTMLDivElement",)
+return hTMLDivElementWrapper{val:val}
+}
+func WrapHTMLDivElement(val js.Value)HTMLDivElement{
+return hTMLDivElementWrapper{val:val}
+}
+
+type HTMLAnchorElement interface {
+// Target returns the value of target.
+Target() string
+
+// SetTarget updates the target value.
+SetTarget(value string)
+
+// Download returns the value of download.
+Download() string
+
+// SetDownload updates the download value.
+SetDownload(value string)
+
+// Ping returns the value of ping.
+Ping() string
+
+// SetPing updates the ping value.
+SetPing(value string)
+
+// Rel returns the value of rel.
+Rel() string
+
+// SetRel updates the rel value.
+SetRel(value string)
+
+// RelList returns the value of relList.
+RelList() DOMTokenList
+
+// Hreflang returns the value of hreflang.
+Hreflang() string
+
+// SetHreflang updates the hreflang value.
+SetHreflang(value string)
+
+// Type_ returns the value of type_.
+Type_() string
+
+// SetType_ updates the type_ value.
+SetType_(value string)
+
+// Text returns the value of text.
+Text() string
+
+// SetText updates the text value.
+SetText(value string)
+
+// ReferrerPolicy returns the value of referrerPolicy.
+ReferrerPolicy() string
+
+// SetReferrerPolicy updates the referrerPolicy value.
+SetReferrerPolicy(value string)
+
+}
+type hTMLAnchorElementWrapper struct {
+val js.Value
+}
+func NewHTMLAnchorElement()HTMLAnchorElement{
+val := js.Global().New("HTMLAnchorElement",)
+return hTMLAnchorElementWrapper{val:val}
+}
+func WrapHTMLAnchorElement(val js.Value)HTMLAnchorElement{
+return hTMLAnchorElementWrapper{val:val}
+}
+func (h hTMLAnchorElementWrapper)Target() string{
+return h.val.Get("target").String()
+}
+
+func (h hTMLAnchorElementWrapper) SetTarget(val string) {
+}
+
+func (h hTMLAnchorElementWrapper)Download() string{
+return h.val.Get("download").String()
+}
+
+func (h hTMLAnchorElementWrapper) SetDownload(val string) {
+}
+
+func (h hTMLAnchorElementWrapper)Ping() string{
+return h.val.Get("ping").String()
+}
+
+func (h hTMLAnchorElementWrapper) SetPing(val string) {
+}
+
+func (h hTMLAnchorElementWrapper)Rel() string{
+return h.val.Get("rel").String()
+}
+
+func (h hTMLAnchorElementWrapper) SetRel(val string) {
+}
+
+func (h hTMLAnchorElementWrapper)RelList() DOMTokenList{
+return WrapDOMTokenList(h.val.Get("relList"))
+}
+
+func (h hTMLAnchorElementWrapper)Hreflang() string{
+return h.val.Get("hreflang").String()
+}
+
+func (h hTMLAnchorElementWrapper) SetHreflang(val string) {
+}
+
+func (h hTMLAnchorElementWrapper)Type_() string{
+return h.val.Get("type").String()
+}
+
+func (h hTMLAnchorElementWrapper) SetType_(val string) {
+}
+
+func (h hTMLAnchorElementWrapper)Text() string{
+return h.val.Get("text").String()
+}
+
+func (h hTMLAnchorElementWrapper) SetText(val string) {
+}
+
+func (h hTMLAnchorElementWrapper)ReferrerPolicy() string{
+return h.val.Get("referrerPolicy").String()
+}
+
+func (h hTMLAnchorElementWrapper) SetReferrerPolicy(val string) {
+}
+
+
+type HTMLDataElement interface {
+// Value returns the value of value.
+Value() string
+
+// SetValue updates the value value.
+SetValue(value string)
+
+}
+type hTMLDataElementWrapper struct {
+val js.Value
+}
+func NewHTMLDataElement()HTMLDataElement{
+val := js.Global().New("HTMLDataElement",)
+return hTMLDataElementWrapper{val:val}
+}
+func WrapHTMLDataElement(val js.Value)HTMLDataElement{
+return hTMLDataElementWrapper{val:val}
+}
+func (h hTMLDataElementWrapper)Value() string{
+return h.val.Get("value").String()
+}
+
+func (h hTMLDataElementWrapper) SetValue(val string) {
+}
+
+
+type HTMLTimeElement interface {
+// DateTime returns the value of dateTime.
+DateTime() string
+
+// SetDateTime updates the dateTime value.
+SetDateTime(value string)
+
+}
+type hTMLTimeElementWrapper struct {
+val js.Value
+}
+func NewHTMLTimeElement()HTMLTimeElement{
+val := js.Global().New("HTMLTimeElement",)
+return hTMLTimeElementWrapper{val:val}
+}
+func WrapHTMLTimeElement(val js.Value)HTMLTimeElement{
+return hTMLTimeElementWrapper{val:val}
+}
+func (h hTMLTimeElementWrapper)DateTime() string{
+return h.val.Get("dateTime").String()
+}
+
+func (h hTMLTimeElementWrapper) SetDateTime(val string) {
+}
+
+
+type HTMLSpanElement interface {
+}
+type hTMLSpanElementWrapper struct {
+val js.Value
+}
+func NewHTMLSpanElement()HTMLSpanElement{
+val := js.Global().New("HTMLSpanElement",)
+return hTMLSpanElementWrapper{val:val}
+}
+func WrapHTMLSpanElement(val js.Value)HTMLSpanElement{
+return hTMLSpanElementWrapper{val:val}
+}
+
+type HTMLBRElement interface {
+}
+type hTMLBRElementWrapper struct {
+val js.Value
+}
+func NewHTMLBRElement()HTMLBRElement{
+val := js.Global().New("HTMLBRElement",)
+return hTMLBRElementWrapper{val:val}
+}
+func WrapHTMLBRElement(val js.Value)HTMLBRElement{
+return hTMLBRElementWrapper{val:val}
+}
+
+type mixin interface {
+// Href returns the value of href.
+Href() string
+
+// Origin returns the value of origin.
+Origin() string
+
+// Protocol returns the value of protocol.
+Protocol() string
+
+// SetProtocol updates the protocol value.
+SetProtocol(value string)
+
+// Username returns the value of username.
+Username() string
+
+// SetUsername updates the username value.
+SetUsername(value string)
+
+// Password returns the value of password.
+Password() string
+
+// SetPassword updates the password value.
+SetPassword(value string)
+
+// Host returns the value of host.
+Host() string
+
+// SetHost updates the host value.
+SetHost(value string)
+
+// Hostname returns the value of hostname.
+Hostname() string
+
+// SetHostname updates the hostname value.
+SetHostname(value string)
+
+// Port returns the value of port.
+Port() string
+
+// SetPort updates the port value.
+SetPort(value string)
+
+// Pathname returns the value of pathname.
+Pathname() string
+
+// SetPathname updates the pathname value.
+SetPathname(value string)
+
+// Search returns the value of search.
+Search() string
+
+// SetSearch updates the search value.
+SetSearch(value string)
+
+// Hash returns the value of hash.
+Hash() string
+
+// SetHash updates the hash value.
+SetHash(value string)
+
+}
+type mixinWrapper struct {
+val js.Value
+}
+func WrapMixin(val js.Value)Mixin{
+return mixinWrapper{val:val}
+}
+func (m mixinWrapper)Href() string{
+return m.val.Get("href").String()
+}
+
+func (m mixinWrapper)Origin() string{
+return m.val.Get("origin").String()
+}
+
+func (m mixinWrapper)Protocol() string{
+return m.val.Get("protocol").String()
+}
+
+func (m mixinWrapper) SetProtocol(val string) {
+}
+
+func (m mixinWrapper)Username() string{
+return m.val.Get("username").String()
+}
+
+func (m mixinWrapper) SetUsername(val string) {
+}
+
+func (m mixinWrapper)Password() string{
+return m.val.Get("password").String()
+}
+
+func (m mixinWrapper) SetPassword(val string) {
+}
+
+func (m mixinWrapper)Host() string{
+return m.val.Get("host").String()
+}
+
+func (m mixinWrapper) SetHost(val string) {
+}
+
+func (m mixinWrapper)Hostname() string{
+return m.val.Get("hostname").String()
+}
+
+func (m mixinWrapper) SetHostname(val string) {
+}
+
+func (m mixinWrapper)Port() string{
+return m.val.Get("port").String()
+}
+
+func (m mixinWrapper) SetPort(val string) {
+}
+
+func (m mixinWrapper)Pathname() string{
+return m.val.Get("pathname").String()
+}
+
+func (m mixinWrapper) SetPathname(val string) {
+}
+
+func (m mixinWrapper)Search() string{
+return m.val.Get("search").String()
+}
+
+func (m mixinWrapper) SetSearch(val string) {
+}
+
+func (m mixinWrapper)Hash() string{
+return m.val.Get("hash").String()
+}
+
+func (m mixinWrapper) SetHash(val string) {
+}
+
+
+type HTMLModElement interface {
+// Cite returns the value of cite.
+Cite() string
+
+// SetCite updates the cite value.
+SetCite(value string)
+
+// DateTime returns the value of dateTime.
+DateTime() string
+
+// SetDateTime updates the dateTime value.
+SetDateTime(value string)
+
+}
+type hTMLModElementWrapper struct {
+val js.Value
+}
+func NewHTMLModElement()HTMLModElement{
+val := js.Global().New("HTMLModElement",)
+return hTMLModElementWrapper{val:val}
+}
+func WrapHTMLModElement(val js.Value)HTMLModElement{
+return hTMLModElementWrapper{val:val}
+}
+func (h hTMLModElementWrapper)Cite() string{
+return h.val.Get("cite").String()
+}
+
+func (h hTMLModElementWrapper) SetCite(val string) {
+}
+
+func (h hTMLModElementWrapper)DateTime() string{
+return h.val.Get("dateTime").String()
+}
+
+func (h hTMLModElementWrapper) SetDateTime(val string) {
+}
+
+
+type HTMLPictureElement interface {
+}
+type hTMLPictureElementWrapper struct {
+val js.Value
+}
+func NewHTMLPictureElement()HTMLPictureElement{
+val := js.Global().New("HTMLPictureElement",)
+return hTMLPictureElementWrapper{val:val}
+}
+func WrapHTMLPictureElement(val js.Value)HTMLPictureElement{
+return hTMLPictureElementWrapper{val:val}
+}
+
+type HTMLSourceElement interface {
+// Src returns the value of src.
+Src() string
+
+// SetSrc updates the src value.
+SetSrc(value string)
+
+// Type_ returns the value of type_.
+Type_() string
+
+// SetType_ updates the type_ value.
+SetType_(value string)
+
+// Srcset returns the value of srcset.
+Srcset() string
+
+// SetSrcset updates the srcset value.
+SetSrcset(value string)
+
+// Sizes returns the value of sizes.
+Sizes() string
+
+// SetSizes updates the sizes value.
+SetSizes(value string)
+
+// Media returns the value of media.
+Media() string
+
+// SetMedia updates the media value.
+SetMedia(value string)
+
+}
+type hTMLSourceElementWrapper struct {
+val js.Value
+}
+func NewHTMLSourceElement()HTMLSourceElement{
+val := js.Global().New("HTMLSourceElement",)
+return hTMLSourceElementWrapper{val:val}
+}
+func WrapHTMLSourceElement(val js.Value)HTMLSourceElement{
+return hTMLSourceElementWrapper{val:val}
+}
+func (h hTMLSourceElementWrapper)Src() string{
+return h.val.Get("src").String()
+}
+
+func (h hTMLSourceElementWrapper) SetSrc(val string) {
+}
+
+func (h hTMLSourceElementWrapper)Type_() string{
+return h.val.Get("type").String()
+}
+
+func (h hTMLSourceElementWrapper) SetType_(val string) {
+}
+
+func (h hTMLSourceElementWrapper)Srcset() string{
+return h.val.Get("srcset").String()
+}
+
+func (h hTMLSourceElementWrapper) SetSrcset(val string) {
+}
+
+func (h hTMLSourceElementWrapper)Sizes() string{
+return h.val.Get("sizes").String()
+}
+
+func (h hTMLSourceElementWrapper) SetSizes(val string) {
+}
+
+func (h hTMLSourceElementWrapper)Media() string{
+return h.val.Get("media").String()
+}
+
+func (h hTMLSourceElementWrapper) SetMedia(val string) {
+}
+
+
+type HTMLImageElement interface {
+// Alt returns the value of alt.
+Alt() string
+
+// SetAlt updates the alt value.
+SetAlt(value string)
+
+// Src returns the value of src.
+Src() string
+
+// SetSrc updates the src value.
+SetSrc(value string)
+
+// Srcset returns the value of srcset.
+Srcset() string
+
+// SetSrcset updates the srcset value.
+SetSrcset(value string)
+
+// Sizes returns the value of sizes.
+Sizes() string
+
+// SetSizes updates the sizes value.
+SetSizes(value string)
+
+// CrossOrigin returns the value of crossOrigin or nil.
+CrossOrigin() string
+
+// SetCrossOrigin updates the crossOrigin value.
+// The value may also be nil.
+SetCrossOrigin(value string)
+
+// UseMap returns the value of useMap.
+UseMap() string
+
+// SetUseMap updates the useMap value.
+SetUseMap(value string)
+
+// IsMap returns the value of isMap.
+IsMap() bool
+
+// SetIsMap updates the isMap value.
+SetIsMap(value bool)
+
+// Width returns the value of width.
+Width() uint64
+
+// SetWidth updates the width value.
+SetWidth(value uint64)
+
+// Height returns the value of height.
+Height() uint64
+
+// SetHeight updates the height value.
+SetHeight(value uint64)
+
+// NaturalWidth returns the value of naturalWidth.
+NaturalWidth() uint64
+
+// NaturalHeight returns the value of naturalHeight.
+NaturalHeight() uint64
+
+// Complete returns the value of complete.
+Complete() bool
+
+// CurrentSrc returns the value of currentSrc.
+CurrentSrc() string
+
+// ReferrerPolicy returns the value of referrerPolicy.
+ReferrerPolicy() string
+
+// SetReferrerPolicy updates the referrerPolicy value.
+SetReferrerPolicy(value string)
+
+// Decoding returns the value of decoding.
+Decoding() Promise<void>
+
+// SetDecoding updates the decoding value.
+SetDecoding(value Promise<void>)
+
+}
+type hTMLImageElementWrapper struct {
+val js.Value
+}
+func NewHTMLImageElement()HTMLImageElement{
+val := js.Global().New("HTMLImageElement",)
+return hTMLImageElementWrapper{val:val}
+}
+func WrapHTMLImageElement(val js.Value)HTMLImageElement{
+return hTMLImageElementWrapper{val:val}
+}
+func (h hTMLImageElementWrapper)Alt() string{
+return h.val.Get("alt").String()
+}
+
+func (h hTMLImageElementWrapper) SetAlt(val string) {
+}
+
+func (h hTMLImageElementWrapper)Src() string{
+return h.val.Get("src").String()
+}
+
+func (h hTMLImageElementWrapper) SetSrc(val string) {
+}
+
+func (h hTMLImageElementWrapper)Srcset() string{
+return h.val.Get("srcset").String()
+}
+
+func (h hTMLImageElementWrapper) SetSrcset(val string) {
+}
+
+func (h hTMLImageElementWrapper)Sizes() string{
+return h.val.Get("sizes").String()
+}
+
+func (h hTMLImageElementWrapper) SetSizes(val string) {
+}
+
+func (h hTMLImageElementWrapper)CrossOrigin() string{
+return h.val.Get("crossOrigin").String()
+}
+
+func (h hTMLImageElementWrapper) SetCrossOrigin(val string) {
+}
+
+func (h hTMLImageElementWrapper)UseMap() string{
+return h.val.Get("useMap").String()
+}
+
+func (h hTMLImageElementWrapper) SetUseMap(val string) {
+}
+
+func (h hTMLImageElementWrapper)IsMap() bool{
+return h.val.Get("isMap").Bool()
+}
+
+func (h hTMLImageElementWrapper) SetIsMap(val bool) {
+}
+
+func (h hTMLImageElementWrapper)Width() uint64{
+return uint64(h.val.Get("width").Int())
+}
+
+func (h hTMLImageElementWrapper) SetWidth(val uint64) {
+}
+
+func (h hTMLImageElementWrapper)Height() uint64{
+return uint64(h.val.Get("height").Int())
+}
+
+func (h hTMLImageElementWrapper) SetHeight(val uint64) {
+}
+
+func (h hTMLImageElementWrapper)NaturalWidth() uint64{
+return uint64(h.val.Get("naturalWidth").Int())
+}
+
+func (h hTMLImageElementWrapper)NaturalHeight() uint64{
+return uint64(h.val.Get("naturalHeight").Int())
+}
+
+func (h hTMLImageElementWrapper)Complete() bool{
+return h.val.Get("complete").Bool()
+}
+
+func (h hTMLImageElementWrapper)CurrentSrc() string{
+return h.val.Get("currentSrc").String()
+}
+
+func (h hTMLImageElementWrapper)ReferrerPolicy() string{
+return h.val.Get("referrerPolicy").String()
+}
+
+func (h hTMLImageElementWrapper) SetReferrerPolicy(val string) {
+}
+
+func (h hTMLImageElementWrapper)Decoding() Promise<void>{
+return WrapPromise<void>(h.val.Get("decoding"))
+}
+
+func (h hTMLImageElementWrapper) SetDecoding(val Promise<void>) {
+}
+
+
+type HTMLIFrameElement interface {
+// Src returns the value of src.
+Src() string
+
+// SetSrc updates the src value.
+SetSrc(value string)
+
+// Srcdoc returns the value of srcdoc.
+Srcdoc() string
+
+// SetSrcdoc updates the srcdoc value.
+SetSrcdoc(value string)
+
+// Name returns the value of name.
+Name() string
+
+// SetName updates the name value.
+SetName(value string)
+
+// Sandbox returns the value of sandbox.
+Sandbox() DOMTokenList
+
+// Allow returns the value of allow.
+Allow() string
+
+// SetAllow updates the allow value.
+SetAllow(value string)
+
+// AllowFullscreen returns the value of allowFullscreen.
+AllowFullscreen() bool
+
+// SetAllowFullscreen updates the allowFullscreen value.
+SetAllowFullscreen(value bool)
+
+// AllowPaymentRequest returns the value of allowPaymentRequest.
+AllowPaymentRequest() bool
+
+// SetAllowPaymentRequest updates the allowPaymentRequest value.
+SetAllowPaymentRequest(value bool)
+
+// Width returns the value of width.
+Width() string
+
+// SetWidth updates the width value.
+SetWidth(value string)
+
+// Height returns the value of height.
+Height() string
+
+// SetHeight updates the height value.
+SetHeight(value string)
+
+// ReferrerPolicy returns the value of referrerPolicy.
+ReferrerPolicy() string
+
+// SetReferrerPolicy updates the referrerPolicy value.
+SetReferrerPolicy(value string)
+
+// ContentDocument returns the value of contentDocument or nil.
+ContentDocument() Document
+
+// ContentWindow returns the value of contentWindow or nil.
+ContentWindow() Document
+
+}
+type hTMLIFrameElementWrapper struct {
+val js.Value
+}
+func NewHTMLIFrameElement()HTMLIFrameElement{
+val := js.Global().New("HTMLIFrameElement",)
+return hTMLIFrameElementWrapper{val:val}
+}
+func WrapHTMLIFrameElement(val js.Value)HTMLIFrameElement{
+return hTMLIFrameElementWrapper{val:val}
+}
+func (h hTMLIFrameElementWrapper)Src() string{
+return h.val.Get("src").String()
+}
+
+func (h hTMLIFrameElementWrapper) SetSrc(val string) {
+}
+
+func (h hTMLIFrameElementWrapper)Srcdoc() string{
+return h.val.Get("srcdoc").String()
+}
+
+func (h hTMLIFrameElementWrapper) SetSrcdoc(val string) {
+}
+
+func (h hTMLIFrameElementWrapper)Name() string{
+return h.val.Get("name").String()
+}
+
+func (h hTMLIFrameElementWrapper) SetName(val string) {
+}
+
+func (h hTMLIFrameElementWrapper)Sandbox() DOMTokenList{
+return WrapDOMTokenList(h.val.Get("sandbox"))
+}
+
+func (h hTMLIFrameElementWrapper)Allow() string{
+return h.val.Get("allow").String()
+}
+
+func (h hTMLIFrameElementWrapper) SetAllow(val string) {
+}
+
+func (h hTMLIFrameElementWrapper)AllowFullscreen() bool{
+return h.val.Get("allowFullscreen").Bool()
+}
+
+func (h hTMLIFrameElementWrapper) SetAllowFullscreen(val bool) {
+}
+
+func (h hTMLIFrameElementWrapper)AllowPaymentRequest() bool{
+return h.val.Get("allowPaymentRequest").Bool()
+}
+
+func (h hTMLIFrameElementWrapper) SetAllowPaymentRequest(val bool) {
+}
+
+func (h hTMLIFrameElementWrapper)Width() string{
+return h.val.Get("width").String()
+}
+
+func (h hTMLIFrameElementWrapper) SetWidth(val string) {
+}
+
+func (h hTMLIFrameElementWrapper)Height() string{
+return h.val.Get("height").String()
+}
+
+func (h hTMLIFrameElementWrapper) SetHeight(val string) {
+}
+
+func (h hTMLIFrameElementWrapper)ReferrerPolicy() string{
+return h.val.Get("referrerPolicy").String()
+}
+
+func (h hTMLIFrameElementWrapper) SetReferrerPolicy(val string) {
+}
+
+func (h hTMLIFrameElementWrapper)ContentDocument() Document{
+return WrapDocument(h.val.Get("contentDocument"))
+}
+
+func (h hTMLIFrameElementWrapper)ContentWindow() Document{
+return WrapDocument(h.val.Get("contentWindow"))
+}
+
+
+type HTMLEmbedElement interface {
+// Src returns the value of src.
+Src() string
+
+// SetSrc updates the src value.
+SetSrc(value string)
+
+// Type_ returns the value of type_.
+Type_() string
+
+// SetType_ updates the type_ value.
+SetType_(value string)
+
+// Width returns the value of width.
+Width() string
+
+// SetWidth updates the width value.
+SetWidth(value string)
+
+// Height returns the value of height or nil.
+Height() Document
+
+// SetHeight updates the height value.
+// The value may also be nil.
+SetHeight(value Document)
+
+}
+type hTMLEmbedElementWrapper struct {
+val js.Value
+}
+func NewHTMLEmbedElement()HTMLEmbedElement{
+val := js.Global().New("HTMLEmbedElement",)
+return hTMLEmbedElementWrapper{val:val}
+}
+func WrapHTMLEmbedElement(val js.Value)HTMLEmbedElement{
+return hTMLEmbedElementWrapper{val:val}
+}
+func (h hTMLEmbedElementWrapper)Src() string{
+return h.val.Get("src").String()
+}
+
+func (h hTMLEmbedElementWrapper) SetSrc(val string) {
+}
+
+func (h hTMLEmbedElementWrapper)Type_() string{
+return h.val.Get("type").String()
+}
+
+func (h hTMLEmbedElementWrapper) SetType_(val string) {
+}
+
+func (h hTMLEmbedElementWrapper)Width() string{
+return h.val.Get("width").String()
+}
+
+func (h hTMLEmbedElementWrapper) SetWidth(val string) {
+}
+
+func (h hTMLEmbedElementWrapper)Height() Document{
+return WrapDocument(h.val.Get("height"))
+}
+
+func (h hTMLEmbedElementWrapper) SetHeight(val Document) {
+}
+
+
+type HTMLObjectElement interface {
+// Data returns the value of data.
+Data() string
+
+// SetData updates the data value.
+SetData(value string)
+
+// Type_ returns the value of type_.
+Type_() string
+
+// SetType_ updates the type_ value.
+SetType_(value string)
+
+// Name returns the value of name.
+Name() string
+
+// SetName updates the name value.
+SetName(value string)
+
+// UseMap returns the value of useMap.
+UseMap() string
+
+// SetUseMap updates the useMap value.
+SetUseMap(value string)
+
+// Form returns the value of form or nil.
+Form() HTMLFormElement
+
+// Width returns the value of width.
+Width() string
+
+// SetWidth updates the width value.
+SetWidth(value string)
+
+// Height returns the value of height.
+Height() string
+
+// SetHeight updates the height value.
+SetHeight(value string)
+
+// ContentDocument returns the value of contentDocument or nil.
+ContentDocument() Document
+
+// ContentWindow returns the value of contentWindow or nil.
+ContentWindow() Document
+
+// WillValidate returns the value of willValidate.
+WillValidate() bool
+
+// Validity returns the value of validity.
+Validity() ValidityState
+
+// ValidationMessage returns the value of validationMessage.
+ValidationMessage() string
+
+}
+type hTMLObjectElementWrapper struct {
+val js.Value
+}
+func NewHTMLObjectElement()HTMLObjectElement{
+val := js.Global().New("HTMLObjectElement",)
+return hTMLObjectElementWrapper{val:val}
+}
+func WrapHTMLObjectElement(val js.Value)HTMLObjectElement{
+return hTMLObjectElementWrapper{val:val}
+}
+func (h hTMLObjectElementWrapper)Data() string{
+return h.val.Get("data").String()
+}
+
+func (h hTMLObjectElementWrapper) SetData(val string) {
+}
+
+func (h hTMLObjectElementWrapper)Type_() string{
+return h.val.Get("type").String()
+}
+
+func (h hTMLObjectElementWrapper) SetType_(val string) {
+}
+
+func (h hTMLObjectElementWrapper)Name() string{
+return h.val.Get("name").String()
+}
+
+func (h hTMLObjectElementWrapper) SetName(val string) {
+}
+
+func (h hTMLObjectElementWrapper)UseMap() string{
+return h.val.Get("useMap").String()
+}
+
+func (h hTMLObjectElementWrapper) SetUseMap(val string) {
+}
+
+func (h hTMLObjectElementWrapper)Form() HTMLFormElement{
+return WrapHTMLFormElement(h.val.Get("form"))
+}
+
+func (h hTMLObjectElementWrapper)Width() string{
+return h.val.Get("width").String()
+}
+
+func (h hTMLObjectElementWrapper) SetWidth(val string) {
+}
+
+func (h hTMLObjectElementWrapper)Height() string{
+return h.val.Get("height").String()
+}
+
+func (h hTMLObjectElementWrapper) SetHeight(val string) {
+}
+
+func (h hTMLObjectElementWrapper)ContentDocument() Document{
+return WrapDocument(h.val.Get("contentDocument"))
+}
+
+func (h hTMLObjectElementWrapper)ContentWindow() Document{
+return WrapDocument(h.val.Get("contentWindow"))
+}
+
+func (h hTMLObjectElementWrapper)WillValidate() bool{
+return h.val.Get("willValidate").Bool()
+}
+
+func (h hTMLObjectElementWrapper)Validity() ValidityState{
+return WrapValidityState(h.val.Get("validity"))
+}
+
+func (h hTMLObjectElementWrapper)ValidationMessage() string{
+return h.val.Get("validationMessage").String()
+}
+
+
+type HTMLParamElement interface {
+// Name returns the value of name.
+Name() string
+
+// SetName updates the name value.
+SetName(value string)
+
+// Value returns the value of value.
+Value() string
+
+// SetValue updates the value value.
+SetValue(value string)
+
+}
+type hTMLParamElementWrapper struct {
+val js.Value
+}
+func NewHTMLParamElement()HTMLParamElement{
+val := js.Global().New("HTMLParamElement",)
+return hTMLParamElementWrapper{val:val}
+}
+func WrapHTMLParamElement(val js.Value)HTMLParamElement{
+return hTMLParamElementWrapper{val:val}
+}
+func (h hTMLParamElementWrapper)Name() string{
+return h.val.Get("name").String()
+}
+
+func (h hTMLParamElementWrapper) SetName(val string) {
+}
+
+func (h hTMLParamElementWrapper)Value() string{
+return h.val.Get("value").String()
+}
+
+func (h hTMLParamElementWrapper) SetValue(val string) {
+}
+
+
+type HTMLVideoElement interface {
+// Width returns the value of width.
+Width() uint64
+
+// SetWidth updates the width value.
+SetWidth(value uint64)
+
+// Height returns the value of height.
+Height() uint64
+
+// SetHeight updates the height value.
+SetHeight(value uint64)
+
+// VideoWidth returns the value of videoWidth.
+VideoWidth() uint64
+
+// VideoHeight returns the value of videoHeight.
+VideoHeight() uint64
+
+// Poster returns the value of poster.
+Poster() string
+
+// SetPoster updates the poster value.
+SetPoster(value string)
+
+// PlaysInline returns the value of playsInline.
+PlaysInline() bool
+
+// SetPlaysInline updates the playsInline value.
+SetPlaysInline(value bool)
+
+}
+type hTMLVideoElementWrapper struct {
+val js.Value
+}
+func NewHTMLVideoElement()HTMLVideoElement{
+val := js.Global().New("HTMLVideoElement",)
+return hTMLVideoElementWrapper{val:val}
+}
+func WrapHTMLVideoElement(val js.Value)HTMLVideoElement{
+return hTMLVideoElementWrapper{val:val}
+}
+func (h hTMLVideoElementWrapper)Width() uint64{
+return uint64(h.val.Get("width").Int())
+}
+
+func (h hTMLVideoElementWrapper) SetWidth(val uint64) {
+}
+
+func (h hTMLVideoElementWrapper)Height() uint64{
+return uint64(h.val.Get("height").Int())
+}
+
+func (h hTMLVideoElementWrapper) SetHeight(val uint64) {
+}
+
+func (h hTMLVideoElementWrapper)VideoWidth() uint64{
+return uint64(h.val.Get("videoWidth").Int())
+}
+
+func (h hTMLVideoElementWrapper)VideoHeight() uint64{
+return uint64(h.val.Get("videoHeight").Int())
+}
+
+func (h hTMLVideoElementWrapper)Poster() string{
+return h.val.Get("poster").String()
+}
+
+func (h hTMLVideoElementWrapper) SetPoster(val string) {
+}
+
+func (h hTMLVideoElementWrapper)PlaysInline() bool{
+return h.val.Get("playsInline").Bool()
+}
+
+func (h hTMLVideoElementWrapper) SetPlaysInline(val bool) {
+}
+
+
+type HTMLAudioElement interface {
+}
+type hTMLAudioElementWrapper struct {
+val js.Value
+}
+func NewHTMLAudioElement()HTMLAudioElement{
+val := js.Global().New("HTMLAudioElement",)
+return hTMLAudioElementWrapper{val:val}
+}
+func WrapHTMLAudioElement(val js.Value)HTMLAudioElement{
+return hTMLAudioElementWrapper{val:val}
+}
+
+type HTMLTrackElement interface {
+// Kind returns the value of kind.
+Kind() string
+
+// SetKind updates the kind value.
+SetKind(value string)
+
+// Src returns the value of src.
+Src() string
+
+// SetSrc updates the src value.
+SetSrc(value string)
+
+// Srclang returns the value of srclang.
+Srclang() string
+
+// SetSrclang updates the srclang value.
+SetSrclang(value string)
+
+// Label returns the value of label.
+Label() string
+
+// SetLabel updates the label value.
+SetLabel(value string)
+
+// Default returns the value of default.
+Default() bool
+
+// SetDefault updates the default value.
+SetDefault(value bool)
+
+// ReadyState returns the value of readyState.
+ReadyState() uint16
+
+// Track returns the value of track.
+Track() TextTrack
+
+}
+type hTMLTrackElementWrapper struct {
+val js.Value
+}
+func NewHTMLTrackElement()HTMLTrackElement{
+val := js.Global().New("HTMLTrackElement",)
+return hTMLTrackElementWrapper{val:val}
+}
+func WrapHTMLTrackElement(val js.Value)HTMLTrackElement{
+return hTMLTrackElementWrapper{val:val}
+}
+func (h hTMLTrackElementWrapper)Kind() string{
+return h.val.Get("kind").String()
+}
+
+func (h hTMLTrackElementWrapper) SetKind(val string) {
+}
+
+func (h hTMLTrackElementWrapper)Src() string{
+return h.val.Get("src").String()
+}
+
+func (h hTMLTrackElementWrapper) SetSrc(val string) {
+}
+
+func (h hTMLTrackElementWrapper)Srclang() string{
+return h.val.Get("srclang").String()
+}
+
+func (h hTMLTrackElementWrapper) SetSrclang(val string) {
+}
+
+func (h hTMLTrackElementWrapper)Label() string{
+return h.val.Get("label").String()
+}
+
+func (h hTMLTrackElementWrapper) SetLabel(val string) {
+}
+
+func (h hTMLTrackElementWrapper)Default() bool{
+return h.val.Get("default").Bool()
+}
+
+func (h hTMLTrackElementWrapper) SetDefault(val bool) {
+}
+
+func (h hTMLTrackElementWrapper)ReadyState() uint16{
+return uint16(h.val.Get("readyState").Int())
+}
+
+func (h hTMLTrackElementWrapper)Track() TextTrack{
+return WrapTextTrack(h.val.Get("track"))
+}
+
+
+type HTMLMediaElement interface {
+// Error returns the value of error or nil.
+Error() MediaError
+
+// Src returns the value of src.
+Src() string
+
+// SetSrc updates the src value.
+SetSrc(value string)
+
+// SrcObject returns the value of srcObject or nil.
+SrcObject() MediaProvider
+
+// SetSrcObject updates the srcObject value.
+// The value may also be nil.
+SetSrcObject(value MediaProvider)
+
+// CurrentSrc returns the value of currentSrc.
+CurrentSrc() string
+
+// CrossOrigin returns the value of crossOrigin or nil.
+CrossOrigin() string
+
+// SetCrossOrigin updates the crossOrigin value.
+// The value may also be nil.
+SetCrossOrigin(value string)
+
+// NetworkState returns the value of networkState.
+NetworkState() uint16
+
+// Preload returns the value of preload.
+Preload() string
+
+// SetPreload updates the preload value.
+SetPreload(value string)
+
+// Buffered returns the value of buffered.
+Buffered() string
+
+// ReadyState returns the value of readyState.
+ReadyState() uint16
+
+// Seeking returns the value of seeking.
+Seeking() bool
+
+// CurrentTime returns the value of currentTime.
+CurrentTime() float64
+
+// SetCurrentTime updates the currentTime value.
+SetCurrentTime(value float64)
+
+// Duration returns the value of duration.
+Duration() object
+
+// Paused returns the value of paused.
+Paused() bool
+
+// DefaultPlaybackRate returns the value of defaultPlaybackRate.
+DefaultPlaybackRate() float64
+
+// SetDefaultPlaybackRate updates the defaultPlaybackRate value.
+SetDefaultPlaybackRate(value float64)
+
+// PlaybackRate returns the value of playbackRate.
+PlaybackRate() float64
+
+// SetPlaybackRate updates the playbackRate value.
+SetPlaybackRate(value float64)
+
+// Played returns the value of played.
+Played() TimeRanges
+
+// Seekable returns the value of seekable.
+Seekable() TimeRanges
+
+// Ended returns the value of ended.
+Ended() bool
+
+// Autoplay returns the value of autoplay.
+Autoplay() bool
+
+// SetAutoplay updates the autoplay value.
+SetAutoplay(value bool)
+
+// Loop returns the value of loop.
+Loop() Promise<void>
+
+// SetLoop updates the loop value.
+SetLoop(value Promise<void>)
+
+// Controls returns the value of controls.
+Controls() bool
+
+// SetControls updates the controls value.
+SetControls(value bool)
+
+// Volume returns the value of volume.
+Volume() float64
+
+// SetVolume updates the volume value.
+SetVolume(value float64)
+
+// Muted returns the value of muted.
+Muted() bool
+
+// SetMuted updates the muted value.
+SetMuted(value bool)
+
+// DefaultMuted returns the value of defaultMuted.
+DefaultMuted() bool
+
+// SetDefaultMuted updates the defaultMuted value.
+SetDefaultMuted(value bool)
+
+// AudioTracks returns the value of audioTracks.
+AudioTracks() AudioTrackList
+
+// VideoTracks returns the value of videoTracks.
+VideoTracks() VideoTrackList
+
+// TextTracks returns the value of textTracks.
+TextTracks() string
+
+}
+type hTMLMediaElementWrapper struct {
+val js.Value
+}
+func WrapHTMLMediaElement(val js.Value)HTMLMediaElement{
+return hTMLMediaElementWrapper{val:val}
+}
+func (h hTMLMediaElementWrapper)Error() MediaError{
+return WrapMediaError(h.val.Get("error"))
+}
+
+func (h hTMLMediaElementWrapper)Src() string{
+return h.val.Get("src").String()
+}
+
+func (h hTMLMediaElementWrapper) SetSrc(val string) {
+}
+
+func (h hTMLMediaElementWrapper)SrcObject() MediaProvider{
+return WrapMediaProvider(h.val.Get("srcObject"))
+}
+
+func (h hTMLMediaElementWrapper) SetSrcObject(val MediaProvider) {
+}
+
+func (h hTMLMediaElementWrapper)CurrentSrc() string{
+return h.val.Get("currentSrc").String()
+}
+
+func (h hTMLMediaElementWrapper)CrossOrigin() string{
+return h.val.Get("crossOrigin").String()
+}
+
+func (h hTMLMediaElementWrapper) SetCrossOrigin(val string) {
+}
+
+func (h hTMLMediaElementWrapper)NetworkState() uint16{
+return uint16(h.val.Get("networkState").Int())
+}
+
+func (h hTMLMediaElementWrapper)Preload() string{
+return h.val.Get("preload").String()
+}
+
+func (h hTMLMediaElementWrapper) SetPreload(val string) {
+}
+
+func (h hTMLMediaElementWrapper)Buffered() string{
+return h.val.Get("buffered").String()
+}
+
+func (h hTMLMediaElementWrapper)ReadyState() uint16{
+return uint16(h.val.Get("readyState").Int())
+}
+
+func (h hTMLMediaElementWrapper)Seeking() bool{
+return h.val.Get("seeking").Bool()
+}
+
+func (h hTMLMediaElementWrapper)CurrentTime() float64{
+return h.val.Get("currentTime").Float()
+}
+
+func (h hTMLMediaElementWrapper) SetCurrentTime(val float64) {
+}
+
+func (h hTMLMediaElementWrapper)Duration() object{
+return Wrapobject(h.val.Get("duration"))
+}
+
+func (h hTMLMediaElementWrapper)Paused() bool{
+return h.val.Get("paused").Bool()
+}
+
+func (h hTMLMediaElementWrapper)DefaultPlaybackRate() float64{
+return h.val.Get("defaultPlaybackRate").Float()
+}
+
+func (h hTMLMediaElementWrapper) SetDefaultPlaybackRate(val float64) {
+}
+
+func (h hTMLMediaElementWrapper)PlaybackRate() float64{
+return h.val.Get("playbackRate").Float()
+}
+
+func (h hTMLMediaElementWrapper) SetPlaybackRate(val float64) {
+}
+
+func (h hTMLMediaElementWrapper)Played() TimeRanges{
+return WrapTimeRanges(h.val.Get("played"))
+}
+
+func (h hTMLMediaElementWrapper)Seekable() TimeRanges{
+return WrapTimeRanges(h.val.Get("seekable"))
+}
+
+func (h hTMLMediaElementWrapper)Ended() bool{
+return h.val.Get("ended").Bool()
+}
+
+func (h hTMLMediaElementWrapper)Autoplay() bool{
+return h.val.Get("autoplay").Bool()
+}
+
+func (h hTMLMediaElementWrapper) SetAutoplay(val bool) {
+}
+
+func (h hTMLMediaElementWrapper)Loop() Promise<void>{
+return WrapPromise<void>(h.val.Get("loop"))
+}
+
+func (h hTMLMediaElementWrapper) SetLoop(val Promise<void>) {
+}
+
+func (h hTMLMediaElementWrapper)Controls() bool{
+return h.val.Get("controls").Bool()
+}
+
+func (h hTMLMediaElementWrapper) SetControls(val bool) {
+}
+
+func (h hTMLMediaElementWrapper)Volume() float64{
+return h.val.Get("volume").Float()
+}
+
+func (h hTMLMediaElementWrapper) SetVolume(val float64) {
+}
+
+func (h hTMLMediaElementWrapper)Muted() bool{
+return h.val.Get("muted").Bool()
+}
+
+func (h hTMLMediaElementWrapper) SetMuted(val bool) {
+}
+
+func (h hTMLMediaElementWrapper)DefaultMuted() bool{
+return h.val.Get("defaultMuted").Bool()
+}
+
+func (h hTMLMediaElementWrapper) SetDefaultMuted(val bool) {
+}
+
+func (h hTMLMediaElementWrapper)AudioTracks() AudioTrackList{
+return WrapAudioTrackList(h.val.Get("audioTracks"))
+}
+
+func (h hTMLMediaElementWrapper)VideoTracks() VideoTrackList{
+return WrapVideoTrackList(h.val.Get("videoTracks"))
+}
+
+func (h hTMLMediaElementWrapper)TextTracks() string{
+return h.val.Get("textTracks").String()
+}
+
+
+type MediaError interface {
+// Code returns the value of code.
+Code() uint16
+
+// Message returns the value of message.
+Message() string
+
+}
+type mediaErrorWrapper struct {
+val js.Value
+}
+func WrapMediaError(val js.Value)MediaError{
+return mediaErrorWrapper{val:val}
+}
+func (m mediaErrorWrapper)Code() uint16{
+return uint16(m.val.Get("code").Int())
+}
+
+func (m mediaErrorWrapper)Message() string{
+return m.val.Get("message").String()
+}
+
+
+type AudioTrackList interface {
+// Length returns the value of length.
+Length() string
+
+// Onchange returns the value of onchange.
+Onchange() EventHandler
+
+// SetOnchange updates the onchange value.
+SetOnchange(value EventHandler)
+
+// Onaddtrack returns the value of onaddtrack.
+Onaddtrack() EventHandler
+
+// SetOnaddtrack updates the onaddtrack value.
+SetOnaddtrack(value EventHandler)
+
+// Onremovetrack returns the value of onremovetrack.
+Onremovetrack() EventHandler
+
+// SetOnremovetrack updates the onremovetrack value.
+SetOnremovetrack(value EventHandler)
+
+}
+type audioTrackListWrapper struct {
+val js.Value
+}
+func WrapAudioTrackList(val js.Value)AudioTrackList{
+return audioTrackListWrapper{val:val}
+}
+func (a audioTrackListWrapper)Length() string{
+return a.val.Get("length").String()
+}
+
+func (a audioTrackListWrapper)Onchange() EventHandler{
+return WrapEventHandler(a.val.Get("onchange"))
+}
+
+func (a audioTrackListWrapper) SetOnchange(val EventHandler) {
+}
+
+func (a audioTrackListWrapper)Onaddtrack() EventHandler{
+return WrapEventHandler(a.val.Get("onaddtrack"))
+}
+
+func (a audioTrackListWrapper) SetOnaddtrack(val EventHandler) {
+}
+
+func (a audioTrackListWrapper)Onremovetrack() EventHandler{
+return WrapEventHandler(a.val.Get("onremovetrack"))
+}
+
+func (a audioTrackListWrapper) SetOnremovetrack(val EventHandler) {
+}
+
+
+type AudioTrack interface {
+// Id returns the value of id.
+Id() string
+
+// Kind returns the value of kind.
+Kind() string
+
+// Label returns the value of label.
+Label() string
+
+// Language returns the value of language.
+Language() string
+
+// Enabled returns the value of enabled.
+Enabled() bool
+
+// SetEnabled updates the enabled value.
+SetEnabled(value bool)
+
+}
+type audioTrackWrapper struct {
+val js.Value
+}
+func WrapAudioTrack(val js.Value)AudioTrack{
+return audioTrackWrapper{val:val}
+}
+func (a audioTrackWrapper)Id() string{
+return a.val.Get("id").String()
+}
+
+func (a audioTrackWrapper)Kind() string{
+return a.val.Get("kind").String()
+}
+
+func (a audioTrackWrapper)Label() string{
+return a.val.Get("label").String()
+}
+
+func (a audioTrackWrapper)Language() string{
+return a.val.Get("language").String()
+}
+
+func (a audioTrackWrapper)Enabled() bool{
+return a.val.Get("enabled").Bool()
+}
+
+func (a audioTrackWrapper) SetEnabled(val bool) {
+}
+
+
+type VideoTrackList interface {
+// Length returns the value of length.
+Length() string
+
+// SelectedIndex returns the value of selectedIndex.
+SelectedIndex() int64
+
+// Onchange returns the value of onchange.
+Onchange() EventHandler
+
+// SetOnchange updates the onchange value.
+SetOnchange(value EventHandler)
+
+// Onaddtrack returns the value of onaddtrack.
+Onaddtrack() EventHandler
+
+// SetOnaddtrack updates the onaddtrack value.
+SetOnaddtrack(value EventHandler)
+
+// Onremovetrack returns the value of onremovetrack.
+Onremovetrack() EventHandler
+
+// SetOnremovetrack updates the onremovetrack value.
+SetOnremovetrack(value EventHandler)
+
+}
+type videoTrackListWrapper struct {
+val js.Value
+}
+func WrapVideoTrackList(val js.Value)VideoTrackList{
+return videoTrackListWrapper{val:val}
+}
+func (v videoTrackListWrapper)Length() string{
+return v.val.Get("length").String()
+}
+
+func (v videoTrackListWrapper)SelectedIndex() int64{
+return int64(v.val.Get("selectedIndex").Int())
+}
+
+func (v videoTrackListWrapper)Onchange() EventHandler{
+return WrapEventHandler(v.val.Get("onchange"))
+}
+
+func (v videoTrackListWrapper) SetOnchange(val EventHandler) {
+}
+
+func (v videoTrackListWrapper)Onaddtrack() EventHandler{
+return WrapEventHandler(v.val.Get("onaddtrack"))
+}
+
+func (v videoTrackListWrapper) SetOnaddtrack(val EventHandler) {
+}
+
+func (v videoTrackListWrapper)Onremovetrack() EventHandler{
+return WrapEventHandler(v.val.Get("onremovetrack"))
+}
+
+func (v videoTrackListWrapper) SetOnremovetrack(val EventHandler) {
+}
+
+
+type VideoTrack interface {
+// Id returns the value of id.
+Id() string
+
+// Kind returns the value of kind.
+Kind() string
+
+// Label returns the value of label.
+Label() string
+
+// Language returns the value of language.
+Language() string
+
+// Selected returns the value of selected.
+Selected() bool
+
+// SetSelected updates the selected value.
+SetSelected(value bool)
+
+}
+type videoTrackWrapper struct {
+val js.Value
+}
+func WrapVideoTrack(val js.Value)VideoTrack{
+return videoTrackWrapper{val:val}
+}
+func (v videoTrackWrapper)Id() string{
+return v.val.Get("id").String()
+}
+
+func (v videoTrackWrapper)Kind() string{
+return v.val.Get("kind").String()
+}
+
+func (v videoTrackWrapper)Label() string{
+return v.val.Get("label").String()
+}
+
+func (v videoTrackWrapper)Language() string{
+return v.val.Get("language").String()
+}
+
+func (v videoTrackWrapper)Selected() bool{
+return v.val.Get("selected").Bool()
+}
+
+func (v videoTrackWrapper) SetSelected(val bool) {
+}
+
+
+type TextTrackList interface {
+// Length returns the value of length.
+Length() string
+
+// Onchange returns the value of onchange.
+Onchange() EventHandler
+
+// SetOnchange updates the onchange value.
+SetOnchange(value EventHandler)
+
+// Onaddtrack returns the value of onaddtrack.
+Onaddtrack() EventHandler
+
+// SetOnaddtrack updates the onaddtrack value.
+SetOnaddtrack(value EventHandler)
+
+// Onremovetrack returns the value of onremovetrack.
+Onremovetrack() EventHandler
+
+// SetOnremovetrack updates the onremovetrack value.
+SetOnremovetrack(value EventHandler)
+
+}
+type textTrackListWrapper struct {
+val js.Value
+}
+func WrapTextTrackList(val js.Value)TextTrackList{
+return textTrackListWrapper{val:val}
+}
+func (t textTrackListWrapper)Length() string{
+return t.val.Get("length").String()
+}
+
+func (t textTrackListWrapper)Onchange() EventHandler{
+return WrapEventHandler(t.val.Get("onchange"))
+}
+
+func (t textTrackListWrapper) SetOnchange(val EventHandler) {
+}
+
+func (t textTrackListWrapper)Onaddtrack() EventHandler{
+return WrapEventHandler(t.val.Get("onaddtrack"))
+}
+
+func (t textTrackListWrapper) SetOnaddtrack(val EventHandler) {
+}
+
+func (t textTrackListWrapper)Onremovetrack() EventHandler{
+return WrapEventHandler(t.val.Get("onremovetrack"))
+}
+
+func (t textTrackListWrapper) SetOnremovetrack(val EventHandler) {
+}
+
+
+type TextTrack interface {
+// Kind returns the value of kind.
+Kind() TextTrackKind
+
+// Label returns the value of label.
+Label() string
+
+// Language returns the value of language.
+Language() string
+
+// Id returns the value of id.
+Id() string
+
+// InBandMetadataTrackDispatchType returns the value of inBandMetadataTrackDispatchType.
+InBandMetadataTrackDispatchType() string
+
+// Mode returns the value of mode.
+Mode() TextTrackMode
+
+// SetMode updates the mode value.
+SetMode(value TextTrackMode)
+
+// Cues returns the value of cues or nil.
+Cues() TextTrackCueList
+
+// ActiveCues returns the value of activeCues.
+ActiveCues() TextTrackCue
+
+// Oncuechange returns the value of oncuechange.
+Oncuechange() EventHandler
+
+// SetOncuechange updates the oncuechange value.
+SetOncuechange(value EventHandler)
+
+}
+type textTrackWrapper struct {
+val js.Value
+}
+func WrapTextTrack(val js.Value)TextTrack{
+return textTrackWrapper{val:val}
+}
+func (t textTrackWrapper)Kind() TextTrackKind{
+return WrapTextTrackKind(t.val.Get("kind"))
+}
+
+func (t textTrackWrapper)Label() string{
+return t.val.Get("label").String()
+}
+
+func (t textTrackWrapper)Language() string{
+return t.val.Get("language").String()
+}
+
+func (t textTrackWrapper)Id() string{
+return t.val.Get("id").String()
+}
+
+func (t textTrackWrapper)InBandMetadataTrackDispatchType() string{
+return t.val.Get("inBandMetadataTrackDispatchType").String()
+}
+
+func (t textTrackWrapper)Mode() TextTrackMode{
+return WrapTextTrackMode(t.val.Get("mode"))
+}
+
+func (t textTrackWrapper) SetMode(val TextTrackMode) {
+}
+
+func (t textTrackWrapper)Cues() TextTrackCueList{
+return WrapTextTrackCueList(t.val.Get("cues"))
+}
+
+func (t textTrackWrapper)ActiveCues() TextTrackCue{
+return WrapTextTrackCue(t.val.Get("activeCues"))
+}
+
+func (t textTrackWrapper)Oncuechange() EventHandler{
+return WrapEventHandler(t.val.Get("oncuechange"))
+}
+
+func (t textTrackWrapper) SetOncuechange(val EventHandler) {
+}
+
+
+type TextTrackCueList interface {
+// Length returns the value of length.
+Length() string
+
+}
+type textTrackCueListWrapper struct {
+val js.Value
+}
+func WrapTextTrackCueList(val js.Value)TextTrackCueList{
+return textTrackCueListWrapper{val:val}
+}
+func (t textTrackCueListWrapper)Length() string{
+return t.val.Get("length").String()
+}
+
+
+type TextTrackCue interface {
+// Track returns the value of track or nil.
+Track() TextTrack
+
+// Id returns the value of id.
+Id() string
+
+// SetId updates the id value.
+SetId(value string)
+
+// StartTime returns the value of startTime.
+StartTime() float64
+
+// SetStartTime updates the startTime value.
+SetStartTime(value float64)
+
+// EndTime returns the value of endTime.
+EndTime() float64
+
+// SetEndTime updates the endTime value.
+SetEndTime(value float64)
+
+// PauseOnExit returns the value of pauseOnExit.
+PauseOnExit() bool
+
+// SetPauseOnExit updates the pauseOnExit value.
+SetPauseOnExit(value bool)
+
+// Onenter returns the value of onenter.
+Onenter() EventHandler
+
+// SetOnenter updates the onenter value.
+SetOnenter(value EventHandler)
+
+// Onexit returns the value of onexit.
+Onexit() EventHandler
+
+// SetOnexit updates the onexit value.
+SetOnexit(value EventHandler)
+
+}
+type textTrackCueWrapper struct {
+val js.Value
+}
+func WrapTextTrackCue(val js.Value)TextTrackCue{
+return textTrackCueWrapper{val:val}
+}
+func (t textTrackCueWrapper)Track() TextTrack{
+return WrapTextTrack(t.val.Get("track"))
+}
+
+func (t textTrackCueWrapper)Id() string{
+return t.val.Get("id").String()
+}
+
+func (t textTrackCueWrapper) SetId(val string) {
+}
+
+func (t textTrackCueWrapper)StartTime() float64{
+return t.val.Get("startTime").Float()
+}
+
+func (t textTrackCueWrapper) SetStartTime(val float64) {
+}
+
+func (t textTrackCueWrapper)EndTime() float64{
+return t.val.Get("endTime").Float()
+}
+
+func (t textTrackCueWrapper) SetEndTime(val float64) {
+}
+
+func (t textTrackCueWrapper)PauseOnExit() bool{
+return t.val.Get("pauseOnExit").Bool()
+}
+
+func (t textTrackCueWrapper) SetPauseOnExit(val bool) {
+}
+
+func (t textTrackCueWrapper)Onenter() EventHandler{
+return WrapEventHandler(t.val.Get("onenter"))
+}
+
+func (t textTrackCueWrapper) SetOnenter(val EventHandler) {
+}
+
+func (t textTrackCueWrapper)Onexit() EventHandler{
+return WrapEventHandler(t.val.Get("onexit"))
+}
+
+func (t textTrackCueWrapper) SetOnexit(val EventHandler) {
+}
+
+
+type TimeRanges interface {
+// Length returns the value of length.
+Length() uint64
+
+}
+type timeRangesWrapper struct {
+val js.Value
+}
+func WrapTimeRanges(val js.Value)TimeRanges{
+return timeRangesWrapper{val:val}
+}
+func (t timeRangesWrapper)Length() uint64{
+return uint64(t.val.Get("length").Int())
+}
+
+
